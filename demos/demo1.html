@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="app">
+Hello, I see you are a {{ charType }}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
+<script>
+const store = new Vuex.Store({
+	state: {
+		hp: 20, 
+		str: 15, 
+		con: 16, 
+		dex: 12, 
+		int: 9, 
+		wis: 11,
+		chr: 16, 
+		type: 'fighter'
+	}
+});
+
+const app = new Vue({
+	el:'#app',
+	data: {
+
+	}, 
+	store: store,
+	computed: {
+		charType() {
+			return this.$store.state.type;
+		}
+	}
+});
+</script>
+
+</body>
+</html>

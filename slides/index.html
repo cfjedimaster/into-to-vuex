@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Introduction to Vuex</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -16,8 +16,186 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Intro to Vuex</h1>
+				</section>
+
+				<section>
+					<h2>read.me</h2>
+					<ul>
+						<li>Raymond Camden</li>
+						<li>Lead Developer Evangelist for HERE</li>
+						<li>Enterprise Cat Demo Builder</li>
+						<li>Second best "Just Dance 2019" player (in my house)</li>
+						<li>Blogging at raymondcamden.com</li>
+						<li>Tweeting @raymondcamden</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Confession</h2>
+					<p class="fragment">
+					Then one day I figured out...
+					</p>
+					<aside class="notes">
+					Vuex was a "stopper" for me on the journey of learning Vue. Like, I definitely had a few things that I had to work to learn, 
+					but in general, and this is why I love Vue, it was so easy, it was so approachable, and then Vuex was just like - bam - nope.
+					</aside>
+				</section>
+
+				<section>
+					<h1>You don't have to use Vuex</h1>
+				</section>
+
+				<section>
+					<h2>"When" is just as important as "What" and "How"</h2>
+				</section>
+
+				<section>
+					<h1>What</h1>
+				</section>
+
+				<section>
+					<blockquote>
+					Vuex is a state management pattern + library for Vue.js applications.
+					</blockquote>
+				</section>
+
+				<section>
+					<p>Why do I need a state management library?</p>
+				</section>
+
+				<section>
+					<img src="img/tree0.png">
+				</section>
+
+				<section>
+					<img src="img/tree01.png">
+				</section>
+
+				<section>
+					<img src="img/tree1.png">
+				</section>
+
+				<section>
+					<img src="img/tree2.png">
+				</section>
+
+				<section>
+				<h2>Yes, I want some Vuex in my life!</h2>
+				<p class="fragment">What's next?</p>
+				</section>
+
+				<section>
+				<h2>Installation (One Way)</h2>
+				<p>
+				<img src="img/in_v.png">
+				</p>
+				<p>
+				Copied from official docs!
+				</p>
+				</section>
+
+				<section>
+				<h2>Installation (Another Way)</h2>
+				<p>
+				<img src="img/in_v2.png">
+				<img src="img/in_v3.png">
+				</p>
+				<p>
+				Copied from official docs!
+				</p>
+				</section>
+
+				<section>
+				<h2>Installation (Yet Another)</h2>
+				<img src="img/in_v4.png">
+				<p class="fragment">if you forget: <code>vue add vuex</code></p>				
+				</section>
+
+				<section>
+				<h1>Code Time!</h1>
+				</section>
+
+				<section data-background="img/stop.jpg">
+				</section>
+
+				<section>
+				<h2>Terms</h2>
+				<ul>
+				<li class="fragment">State</li>
+				<li class="fragment">Mutations</li>
+				<li class="fragment">Actions</li>
+				<li class="fragment">Getters</li>
+				<li class="fragment">Modules</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Creating a Store</h2>
+				<pre><code class="language-javascript" data-trim>
+const store = new Vuex.Store({
+
+});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Creating a Store</h2>
+				<pre><code class="language-javascript" data-trim>
+const store = new Vuex.Store({
+	state: {
+		hp: 20, 
+		str: 15, 
+		con: 16, 
+		dex: 12, 
+		int: 9, 
+		wis: 11,
+		chr: 16, 
+		type: 'fighter'
+	}
+});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Adding the Store</h2>
+				<pre><code class="language-javascript" data-trim>
+const app = new Vue({
+	el:'#app',
+	data: {
+
+	}, // more stuff
+	store: store
+});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Seeing the Data</h2>
+				<pre><code class="language-html" data-trim>
+<div>
+Hello, I see you are a {{ $store.state.type }}
+</div>
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Seeing the Data</h2>
+				<pre><code class="language-html" data-trim>
+<div>
+Hello, I see you are a {{ charType }}
+</div>
+				</code></pre>
+				<pre><code class="language-javascript" data-trim>
+// rest of your vue app
+computed: {
+	charType() {
+		return this.$store.state.type;
+	}
+}
+				</code></pre>
+				</section>
 			</div>
 		</div>
 
@@ -33,7 +211,8 @@
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+				slideNumber:'c/t'
 			});
 		</script>
 	</body>
