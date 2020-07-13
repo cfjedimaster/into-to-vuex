@@ -1,0 +1,54 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="app">
+<h2>Star Wars Films</h2>
+<ul>
+	<li v-for="film in films">{{ film.title }}</li>
+</ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
+<script>
+const store = new Vuex.Store({
+	state: {
+		films:[]
+	}, 
+	mutations: {
+		setFilms(state,films) {
+			state.films = films;
+		}
+	},
+	actions: {
+	  async loadFilms(context) {
+	  	let resp = await fetch('https://swapi.dev/api/films/');
+		let films = (await resp.json()).results;
+		context.commit('setFilms', films);  
+	  }
+  }
+
+});
+
+const app = new Vue({
+	el:'#app',
+	data: {
+
+	}, 
+	store: store,
+	created() {
+		this.$store.dispatch('loadFilms');
+	},
+	computed: {
+		films() {
+			return this.$store.state.films;
+		}
+	}
+});
+</script>
+
+</body>
+</html>

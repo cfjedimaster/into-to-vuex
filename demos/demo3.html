@@ -1,0 +1,73 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="app">
+Hello, I see you are a {{ charType }}.<br/>
+You currently have {{ hp }} hitpoints.<br/>
+<button @click="hitMe">Hit Me</button> <button @click="healMe">Heal Me</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
+<script>
+const store = new Vuex.Store({
+	state: {
+		hp: 20, 
+		str: 15, 
+		con: 16, 
+		dex: 12, 
+		int: 9, 
+		wis: 11,
+		chr: 16, 
+		type: 'fighter'
+	}, 
+	mutations: {
+		hit(state) {
+			state.hp--;
+		},
+		heal(state, amt) {
+			let newHp = state.hp += amt;
+			if(newHp > 30) newHp = 30;
+			state.hp = newHp;
+		}
+	},
+	actions: {
+	  heal(context) {
+		  setTimeout(() => {
+			  context.commit('heal', 2);
+		  }, 2000);
+	  }
+  }
+
+});
+
+const app = new Vue({
+	el:'#app',
+	data: {
+
+	}, 
+	store: store,
+	computed: {
+		charType() {
+			return this.$store.state.type;
+		},
+		hp() {
+			return this.$store.state.hp;
+		}
+	},
+	methods: {
+		hitMe() {
+			this.$store.commit('hit');
+		},
+		healMe() {
+			this.$store.dispatch('heal', 3);
+		}
+	}
+});
+</script>
+
+</body>
+</html>

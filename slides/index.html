@@ -196,6 +196,127 @@ computed: {
 }
 				</code></pre>
 				</section>
+
+				<section>
+					<h2>Demo</h2>
+					<aside class="notes">demo1.html</aside>
+				</section>
+
+				<section>
+				<h2>Mutations</h2>
+				<ul>
+				<li class="fragment">Change state</li>
+				<li class="fragment">Defined internally in <code>mutations</code> block</li>
+				<li class="fragment">Called externally via:</li>
+				<li class="fragment"><code>store.commit('name of mutation')</code></li>
+				<li class="fragment"><code>store.commit('name of mutation', data)</code></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Mutations (Internal)</h2>
+				<pre><code class="language-javascript stretch" data-trim>
+const store = new Vuex.Store({
+	state: {
+		hp: 20, 
+		//removed stuff
+	}, 
+	mutations: {
+		hit(state) {
+			state.hp--;
+		},
+		heal(state, amt) {
+			state.hp += amt;
+		}
+	}
+});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Mutations (External)</h2>
+				<pre><code class="language-javascript stretch" data-trim>
+//more code
+methods: {
+	hitMe() {
+		this.$store.commit('hit');
+	},
+	healMe() {
+		this.$store.commit('heal', 3);
+	}
+}
+				</code></pre>
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+					<aside class="notes">demo2.html</aside>
+				</section>
+		
+				<section>
+				<h2>Actions</h2>
+				<ul>
+				<li class="fragment">Guess what? They also change data!</li>
+				<li class="fragment">They are asynchronous</li>
+				<li class="fragment">Typically chain to mutations</li>
+				<li class="fragment">If this seems weird, it is (kinda, imo)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Actions (2)</h2>
+				<ul>
+				<li class="fragment">Defined internally in <code>actions</code> block</li>
+				<li class="fragment">Called externally via:</li>
+				<li class="fragment"><code>store.dispatch('name of action')</code></li>
+				<li class="fragment"><code>store.dispatch('name of action', data)</code></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Actions (Internal)</h2>
+				<pre><code class="language-javascript stretch" data-trim>
+const store = new Vuex.Store({
+	state: {
+		hp: 20, 
+		//removed stuff
+	}, 
+	mutations: {
+		heal(state,amt) {
+			state.hp+=amt;
+		},
+	},
+	actions: {
+		heal(context) {
+			setTimeout(() => {
+				context.commit('heal', 3);
+			}, 3000);
+		}
+	}
+});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Actions (External)</h2>
+				<pre><code class="language-javascript stretch" data-trim>
+//more code
+mmethods: {
+	hitMe() {
+		this.$store.commit('hit');
+	},
+	healMe() {
+		this.$store.dispatch('heal');
+	}
+}
+				</code></pre>
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+					<aside class="notes">demo3.html and demo4</aside>
+				</section>
+
 			</div>
 		</div>
 

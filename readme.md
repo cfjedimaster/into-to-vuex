@@ -38,6 +38,8 @@ Parts of Vuex
 	Actions
 	Modules
 
-dont forget to cover:
-	mapState
-	mapGetters
+todo - 
+getters
+mapState/Getters
+modules
+vuex dev tools
