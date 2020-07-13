@@ -338,7 +338,7 @@ const store = new Vuex.Store({
 	}, 
 	getters: {
 		condition(state) {
-			if(state.hp < 10) return 'bad';
+			if(state.hp &lt; 10) return 'bad';
 			return 'good';
 		}
 	}
@@ -363,6 +363,27 @@ computed: {
 					<aside class="notes">demo5</aside>
 				</section>
 
+				<section>
+				<h2>Recap</h2>
+				<ul>
+				<li class="fragment">Store has a state object for your data</li>
+				<li class="fragment">Mutations change data</li>
+				<li class="fragment">Actions handle async requests (normally chain to mutations)</li>
+				<li class="fragment">Getters provide easier accces</li>
+				<li class="fragment">Haven't covered yet: Modules (but we will)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Mapping Functions</h2>
+				<ul>
+				<li class="fragment">Reduce the boilerplate of working with Vuex</li>
+				<li class="fragment">mapState</li>
+				<li class="fragment">mapGetters</li>
+				<li class="fragment">mapMutations</li>
+				<li class="fragment">mapActions</li>
+				</ul>
+				</section>
 			</div>
 		</div>
 
