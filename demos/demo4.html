@@ -1,10 +1,14 @@
 <html>
 <head>
+<style>
+[v-cloak] {display: none}
+</style>
+
 </head>
 
 <body>
 
-<div id="app">
+<div id="app" v-cloak>
 <h2>Star Wars Films</h2>
 <ul>
 	<li v-for="film in films">{{ film.title }}</li>
