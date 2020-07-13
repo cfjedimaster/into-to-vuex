@@ -39,7 +39,6 @@ Parts of Vuex
 	Modules
 
 todo - 
-getters
 mapState/Getters
 modules
 vuex dev tools

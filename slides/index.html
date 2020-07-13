@@ -317,6 +317,52 @@ mmethods: {
 					<aside class="notes">demo3.html and demo4</aside>
 				</section>
 
+				<section>
+				<h2>Getters</h2>
+				<ul>
+				<li class="fragment">Pretty much <code>computed</code> for Vuex</li>
+				<li class="fragment">Values are cached based on dependencies</li>
+				<li class="fragment">Called externally via:</li>
+				<li class="fragment"><code>store.getters.nameOfGetter</code></li>
+				<li class="fragment"><code>store.getters.nameOfGetter(arg)</code></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Getters (Internal)</h2>
+				<pre><code class="language-javascript stretch" data-trim>
+const store = new Vuex.Store({
+	state: {
+		hp: 20, 
+		//removed stuff
+	}, 
+	getters: {
+		condition(state) {
+			if(state.hp < 10) return 'bad';
+			return 'good';
+		}
+	}
+});
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Getters (External)</h2>
+				<pre><code class="language-javascript stretch" data-trim>
+//more code
+computed: {
+	condition() {
+		return this.$store.getters.condition;
+	},
+}
+				</code></pre>
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+					<aside class="notes">demo5</aside>
+				</section>
+
 			</div>
 		</div>
 
