@@ -1,0 +1,85 @@
+<html>
+<head>
+<style>
+[v-cloak] {display: none}
+</style>
+</head>
+
+<body>
+
+<div id="app" v-cloak>
+  I currently have {{hp}} hitpoints. I'm currently {{ condition }}.<br/>
+  Random test: {{ somethingRandom }}
+  <p>
+  <button @click="hitMe">Hit!</button>
+  <button @click="healMe">Heal</button>
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
+<script>
+
+const store = new Vuex.Store({
+
+  state: {
+    hp: 20,
+    str: 15,
+    con: 16,
+    dex: 12,
+    int: 9,
+    wis: 11,
+    chr: 16,
+    type: 'fighter'
+  },
+ 
+  getters: {
+    condition(state) {
+      if(state.hp < 2) return 'critical';
+      if(state.hp < 5) return 'near death';
+      if(state.hp < 10) return 'deeply wounded';
+      if(state.hp < 15) return 'wounded';
+      return 'just fine'
+    }
+  },
+  mutations: {
+	  heal(state,amt) {
+		  state.hp+=amt;
+	  },
+	  hit(state) {
+		  state.hp--;
+	  }
+  },
+  
+  actions: {
+	  heal(context) {
+		  setTimeout(() => {
+			  context.commit('heal', 2);
+		  }, 2000);
+	  }
+  }
+
+});
+
+const app = new Vue({
+  el:'#app',
+  store,
+  computed: {
+	...Vuex.mapState(['hp']),
+	...Vuex.mapGetters(['condition']),
+	somethingRandom() { return 'hello' }
+  },
+  methods:{
+    healMe() {
+      store.dispatch('heal');
+    },
+    hitMe() {
+      store.commit('hit');
+    }
+  }
+})
+
+</script>
+
+</body>
+</html>

@@ -16,8 +16,8 @@ outline:
 
 
 todo - 
-mapState/Getters
 modules
-vuex dev tools
 
 stock
+
+resources
